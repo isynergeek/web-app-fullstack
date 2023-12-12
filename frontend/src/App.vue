@@ -1,18 +1,25 @@
-<script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
-</script>
-
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+  <el-table :data="tableData" stripe style="width: 100%">
+    <el-table-column prop="name" label="Name" width="180" />
+    <el-table-column prop="price" label="Price" width="180" />
+    <el-table-column prop="bedrooms" label="Bedrooms" />
+    <el-table-column prop="bathrooms" label="Bathrooms" />
+    <el-table-column prop="storeys" label="Storeys" />
+    <el-table-column prop="garages" label="Garages" />
+  </el-table>
 </template>
+
+<script setup lang="ts">
+import { getPropertyList } from '@/api/common.ts';
+import { ref } from 'vue';
+
+const tableData = ref([]);
+
+getPropertyList().then(resp => {
+  tableData.value = resp.data.data;
+})
+
+</script>
 
 <style scoped>
 .logo {
