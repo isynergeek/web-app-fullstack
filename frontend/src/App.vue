@@ -83,7 +83,7 @@
           width="160"
       >
         <template #header>
-          <div class="table-header-name">Bathrooms</div>
+          <div class="table-header-name">Storeys</div>
           <el-input
               v-model="filters.storeys"
               placeholder="Enter number"

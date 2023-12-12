@@ -26,3 +26,6 @@ cp .env.example .env
 yarn 
 yarn dev
 ```
+
+## Demo
+http://prop-app.synergeek.ru/
