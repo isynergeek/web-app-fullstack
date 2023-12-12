@@ -46,6 +46,10 @@ services:
                 - '-p${DB_PASSWORD}'
             retries: 3
             timeout: 5s
+    php82:
+        image: 'devilbox/php-fpm:8.2-work'
+        volumes:
+            - '.:/var/www/html'
 networks:
     sail:
         driver: bridge
