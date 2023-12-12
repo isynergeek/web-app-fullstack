@@ -2,65 +2,29 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StorePropertyRequest;
-use App\Http\Requests\UpdatePropertyRequest;
-use App\Models\Property;
+use App\Dto\PropertyListDto;
+use App\Http\Requests\GetPropertyListRequest;
+use App\Http\Resources\PropertyResource;
+use App\Services\PropertyService;
 
 class PropertyController extends Controller
 {
+    private $propertyService;
+
+    public function __construct(PropertyService $propertyService)
+    {
+        $this->propertyService = $propertyService;
+    }
+
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(GetPropertyListRequest $request)
     {
-        //
+        $listDto = new PropertyListDto(...$request->all());
+        $collection = $this->propertyService->getList($listDto);
+
+        return PropertyResource::collection($collection);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StorePropertyRequest $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Property $property)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(Property $property)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdatePropertyRequest $request, Property $property)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(Property $property)
-    {
-        //
-    }
 }
