@@ -47,6 +47,6 @@ class PropertyService
             $query->where('price', '<=', $price_to);
         }
 
-        return $query->get();
+        return $query->orderBy('name')->get();
     }
 }
